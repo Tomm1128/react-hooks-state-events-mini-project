@@ -2,11 +2,6 @@ import React from "react";
 
 function Task({category, task, handleDelete}) {
 
-  // const handleDelete = (event) => {
-  //   const currentTask = event.target.parentElement.childNodes[1].textContent
-  //   console.log(currentTask)
-  // }
-
   return (
     <div className="task">
       <div className="label">{category}</div>
