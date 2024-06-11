@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Task from "./Task"
 
 function TaskList({tasks}) {
-  console.log(tasks)
+  const [taskList, setTasks] = useState(tasks)
 
-  const taskCardArray = tasks.map(task => {
-    return <Task key={task.text} category={task.category} task={task.text}/>
+  const deleteTasks = (event) => {
+    const currentTask = event.target.parentElement.childNodes[1].textContent
+    const updatedTaskList = taskList.filter(task => task.text !== currentTask)
+    setTasks(updatedTaskList)
+  }
+
+  const taskCardArray = taskList.map(task => {
+    return <Task key={task.text} category={task.category} task={task.text} handleDelete={deleteTasks}/>
   })
 
   return (
