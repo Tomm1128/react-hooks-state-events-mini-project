@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function NewTaskForm({categories, onTaskFormSubmit}) {
   const [todoDetails, setTodoDetails] = useState("")
-  const [categoryField, setCategoryField] = useState()
+  const [categoryField, setCategoryField] = useState("Code")
 
   const categoryOptions = categories.map(category => {
     if(category !== "All")
@@ -24,7 +24,6 @@ function NewTaskForm({categories, onTaskFormSubmit}) {
       text: todoDetails,
       category: categoryField
     }
-    console.log(newFormData)
     onTaskFormSubmit(newFormData)
   }
 

@@ -5,21 +5,16 @@ import NewTaskForm from "./NewTaskForm";
 import TaskList from "./TaskList";
 
 import { CATEGORIES, TASKS } from "../data";
-console.log("Here's the data you're working with");
-console.log({ CATEGORIES, TASKS });
 
 function App() {
   const [taskList, setTasks] = useState(TASKS)
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [formData, setFormData] = useState([])
 
-  const updateTasks = (newTask) => {
-    setTasks([...taskList, newTask])
-  }
-
   const onTaskFormSubmit = (newFormData) => {
-    setFormData(newFormData)
-    updateTasks(newFormData)
+    const formDataArray = [...formData, newFormData]
+    setFormData(formDataArray)
+    setTasks([...taskList, newFormData])
   }
 
   const deleteTasks = (event) => {
