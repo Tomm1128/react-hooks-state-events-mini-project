@@ -11,9 +11,15 @@ console.log({ CATEGORIES, TASKS });
 function App() {
   const [taskList, setTasks] = useState(TASKS)
   const [categoryFilter, setCategoryFilter] = useState("All")
+  const [formData, setFormData] = useState([])
 
-  const updateTaskList = (updatedList) => {
-    setTasks(updatedList)
+  const updateTasks = (newTask) => {
+    setTasks([...taskList, newTask])
+  }
+
+  const onTaskFormSubmit = (newFormData) => {
+    setFormData(newFormData)
+    updateTasks(newFormData)
   }
 
   const deleteTasks = (event) => {
@@ -44,7 +50,7 @@ function App() {
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} filterByCategory={filterCategory} />
-      <NewTaskForm />
+      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={onTaskFormSubmit} />
       <TaskList tasks={currentTasks} handleDelete={deleteTasks} currentFilter={categoryFilter}/>
     </div>
   );
