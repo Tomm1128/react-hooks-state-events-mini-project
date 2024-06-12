@@ -22,27 +22,30 @@ function App() {
     setTasks(updatedTaskList)
   }
 
-  const filterTaskList = () => {
-    let currentTasks = taskList.filter(task => task.category === categoryFilter)
-    updateTaskList(currentTasks)
-  }
-
   const filterCategory = (event) => {
-    if (event.target.className)
+    if (event.target.className === "selected")
       event.target.className = ""
     else
       event.target.className = "selected"
 
     setCategoryFilter(event.target.textContent)
-    filterTaskList()
   }
+
+  let currentTasks = taskList.filter(task => {
+    if (categoryFilter === "All"){
+      return true
+    }
+    else {
+      return task.category === categoryFilter
+    }
+  })
 
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} filterByCategory={filterCategory} />
       <NewTaskForm />
-      <TaskList tasks={taskList} handleDelete={deleteTasks} currentFilter={categoryFilter}/>
+      <TaskList tasks={currentTasks} handleDelete={deleteTasks} currentFilter={categoryFilter}/>
     </div>
   );
 }
