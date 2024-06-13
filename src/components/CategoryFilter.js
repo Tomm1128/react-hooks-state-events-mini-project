@@ -1,8 +1,17 @@
 import React from "react";
 
-function CategoryFilter({categories, filterByCategory}) {
+function CategoryFilter({categories, filterByCategory, isSelected}) {
+
   const categoryButtons = categories.map(category => {
-    return <button key={category} onClick={filterByCategory}>{category}</button>
+    return (
+    <button
+      key={category}
+      onClick={filterByCategory}
+      className={category === isSelected ? "selected" : ""}
+      >
+      {category}
+    </button>
+    )
   })
 
   return (

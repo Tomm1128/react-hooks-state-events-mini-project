@@ -2,7 +2,7 @@ import React from "react";
 
 import Task from "./Task"
 
-function TaskList({ tasks, handleDelete, currentFilter }) {
+function TaskList({ tasks, handleDelete }) {
   const taskCardArray = tasks.map(task => {
     return (
     <Task

@@ -9,6 +9,7 @@ import { CATEGORIES, TASKS } from "../data";
 function App() {
   const [taskList, setTasks] = useState(TASKS)
   const [categoryFilter, setCategoryFilter] = useState("All")
+  const [isSelected, setSelected] = useState("All")
   const [formData, setFormData] = useState([])
 
   const onTaskFormSubmit = (newFormData) => {
@@ -24,11 +25,7 @@ function App() {
   }
 
   const filterCategory = (event) => {
-    if (event.target.className === "selected")
-      event.target.className = ""
-    else
-      event.target.className = "selected"
-
+    setSelected(event.target.textContent)
     setCategoryFilter(event.target.textContent)
   }
 
@@ -44,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories={CATEGORIES} filterByCategory={filterCategory} />
+      <CategoryFilter categories={CATEGORIES} filterByCategory={filterCategory} isSelected={isSelected} />
       <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={onTaskFormSubmit} />
       <TaskList tasks={currentTasks} handleDelete={deleteTasks} currentFilter={categoryFilter}/>
     </div>
